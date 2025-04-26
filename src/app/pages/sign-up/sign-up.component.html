@@ -1,0 +1,12 @@
+<div class="card">
+    <form (submit)="submitForSignUp($event)">
+        <div class="card-header text-center">
+            <h1>Signup</h1>
+        </div>
+        <div>
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" id="email" class="form-control" [formControl]="email" />
+        </div>
+        <button [disabled]="isDisabled()">Sign up</button>
+    </form>
+</div>
