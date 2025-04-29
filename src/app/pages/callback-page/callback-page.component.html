@@ -1,0 +1,5 @@
+@if(status=== 'loading'){
+<app-spinner size="regular" />
+}@else{
+<app-alert [variantStyle]="status=== 'success'?'success': 'danger'">{{message}}</app-alert>
+}

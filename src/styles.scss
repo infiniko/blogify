@@ -1,2 +1,36 @@
+@use "bootstrap/scss/bootstrap" with ($primary: #04BFBF, $border-width: 1px);
 // @import "../node_modules/bootstrap/scss/bootstrap.scss"
-@use 'bootstrap' as bs;
+// @use 'bootstrap' as bs;
+
+.card {
+    border: 1px solid #618C8C;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.btn {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    transform: translate(-2px, 0px);
+    transition: unset;
+
+    &:active {
+
+        // transform: unset;
+    transform: translate(-1px, 0px);
+    }
+
+    &:disabled {
+        box-shadow: unset;
+        transform: unset;
+    }
+}
+
+.navbar a {
+    &:hover {
+        text-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.12) 0px 1px 2px;
+        transform: translate(-3px, 0px);
+        
+    }
+}
+.navbar{
+    border-bottom: 3px solid rgba(97, 140, 140, 0.12);
+}

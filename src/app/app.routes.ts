@@ -1,7 +1,19 @@
 import { Routes } from '@angular/router';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { CallbackPageComponent } from './pages/callback-page/callback-page.component';
 
-export const routes: Routes = [{
-    path: 'signup',
-    component: SignUpComponent
-}];
+export const routes: Routes = [
+    {
+        path: 'signup',
+        component: SignUpComponent
+    },
+    {
+        path: '',
+        component: HomePageComponent
+    },
+    {
+        path: 'callback',
+        component: CallbackPageComponent
+    },
+];

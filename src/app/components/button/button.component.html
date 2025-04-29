@@ -1,0 +1,5 @@
+<button [class]="buttonClass" [disabled]="disabled || apiProgress">
+    @if (apiProgress) {
+    <app-spinner size="small" />
+    }
+    <ng-content></ng-content></button>
