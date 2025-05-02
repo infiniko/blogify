@@ -1,0 +1,10 @@
+<div class="d-flex flex-column editor-base">
+    <div class="bg-white border rounded p-3 h-100 d-flex flex-column">
+        <textarea class="fs-1 border-0 no-outline" rows="1" placeholder="Post Title" [formControl]="title"></textarea>
+        <textarea class=" flex-grow-1 border-0 no-outline" placeholder="Content here"
+            [formControl]="content"></textarea>
+    </div>
+    <div class="p-2">
+        <app-button variantStyle="success">Save</app-button>
+    </div>
+</div>
