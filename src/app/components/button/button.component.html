@@ -1,5 +1,6 @@
-<button [class]="buttonClass" [disabled]="disabled || apiProgress">
+<button [class]="buttonClass" [disabled]="disabled || apiProgress" (click)="onClick.emit()">
     @if (apiProgress) {
     <app-spinner size="small" />
     }
-    <ng-content></ng-content></button>
+    <ng-content></ng-content>
+</button>

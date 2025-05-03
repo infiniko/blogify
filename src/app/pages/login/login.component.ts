@@ -39,7 +39,7 @@ export class LoginComponent {
     return !this.email.value || this.apiProgress || !this.email.valid;
   }
 
-  submitForSignUp(event: Event) {
+  submitForLogin(event: Event) {
     this.successMessage = '';
     this.errorMessage = '';
     this.apiProgress = true;

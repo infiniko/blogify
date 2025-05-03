@@ -1,10 +1,19 @@
 <div class="d-flex flex-column editor-base">
     <div class="bg-white border rounded p-3 h-100 d-flex flex-column">
-        <textarea class="fs-1 border-0 no-outline" rows="1" placeholder="Post Title" [formControl]="title"></textarea>
+        <textarea class="fs-1 border-0 border-bottom border-primary border-2 no-outline" rows="1"
+            placeholder="Post Title" [formControl]="title"></textarea>
+        <span class="text-danger small">{{errors?.title}}</span>
         <textarea class=" flex-grow-1 border-0 no-outline" placeholder="Content here"
             [formControl]="content"></textarea>
+        <span class="text-danger small">{{errors?.content}}</span>
     </div>
-    <div class="p-2">
-        <app-button variantStyle="success">Save</app-button>
+    <div class="d-flex gap-2 p-2">
+        <app-button variantStyle="success" (onClick)="submit()" [apiProgress]="apiProgress">
+            @if (id) {Update}
+            @else {Save}
+        </app-button>
+        @if (id) {
+        <app-publish-button [id]="id"></app-publish-button>
+        }
     </div>
 </div>

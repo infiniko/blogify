@@ -1,4 +1,10 @@
-@use "bootstrap/scss/bootstrap" with ($primary: #04BFBF, $border-width: 1px);
+@use "bootstrap/scss/bootstrap" with (
+    $primary: #04BFBF,
+    $secondary: #618C8C,
+    $success: #5bc783,
+    $danger: #F2163E,
+    $border-width: 1px
+    );
 // @import "../node_modules/bootstrap/scss/bootstrap.scss"
 // @use 'bootstrap' as bs;
 
@@ -52,3 +58,4 @@
 .editor-base{
     height: calc(100vh - 75px);
 }
+

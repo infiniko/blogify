@@ -1,13 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '../../../components/button/button.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ArticleService } from '../../../shared/article.service';
+import { PublishButtonComponent } from '../components/publish-button/publish-button.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-article-editor',
-  imports: [ButtonComponent, ReactiveFormsModule],
+  imports: [ButtonComponent, ReactiveFormsModule, PublishButtonComponent],
   templateUrl: './article-editor.component.html'
 })
 export class ArticleEditorComponent {
-  title = new FormControl<string>('', { nonNullable: true })
-  content = new FormControl<string>('', { nonNullable: true })
+
+  private articleService = inject(ArticleService);
+  title = new FormControl<string>('', { nonNullable: true, validators: [Validators.required] })
+  content = new FormControl<string>('', { nonNullable: true, validators: [Validators.required] })
+  id: number = 0;
+  apiProgress = false;
+
+
+  errors: { title: string | undefined, content: string | undefined } | undefined;
+  constructor() {
+    this.title.valueChanges.subscribe(() => {
+      if (this.errors?.title) {
+        this.errors.title = undefined;
+      }
+    });
+    this.content.valueChanges.subscribe(() => {
+      if (this.errors?.content) {
+        this.errors.content = undefined;
+      }
+    });
+  }
+
+  checkValidity() {
+    let validity = true;
+    const validationErrors: typeof this.errors = {
+      title: undefined,
+      content: undefined
+    }
+
+    if (this.title.errors) {
+      validationErrors.title = 'Title required';
+      validity = false;
+    }
+
+    if (this.content.errors) {
+      validationErrors.content = 'Content required';
+      validity = false;
+    }
+
+    this.errors = validationErrors;
+    return validity;
+  }
+
+  submit() {
+    if (!this.checkValidity()) return;
+    this.apiProgress = true;
+    this.articleService.createOrUpdateArticle({
+      title: this.title.value,
+      content: this.content.value,
+    }, this.id).subscribe({
+      next: (data) => {
+        this.apiProgress = false;
+        this.id = data.id;
+      },
+      error: (httpError: HttpErrorResponse) => {
+        this.apiProgress = false;
+        if (httpError.status === 400) {
+          this.errors = httpError.error.validationErrors
+        }
+      }
+    })
+  }
 }
