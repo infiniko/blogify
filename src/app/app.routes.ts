@@ -4,6 +4,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CallbackPageComponent } from './pages/callback-page/callback-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ArticleEditorComponent } from './pages/article/article-editor/article-editor.component';
+import { ArticleViewPageComponent } from './pages/article/article-view-page/article-view-page.component';
+import { UserViewPageComponent } from './pages/user/user-view-page/user-view-page.component';
+import { ArticleEditPageComponent } from './pages/article/article-edit-page/article-edit-page.component';
 
 export const routes: Routes = [
     {
@@ -25,5 +28,16 @@ export const routes: Routes = [
     {
         path: 'article/new',
         component: ArticleEditorComponent
+    }, {
+        path: ':handle',
+        component: UserViewPageComponent
+    },
+    {
+        path: ':handle/:idOrSlug',
+        component: ArticleViewPageComponent
+    },
+    {
+        path: ':handle/:idOrSlug/edit',
+        component: ArticleEditPageComponent
     },
 ];

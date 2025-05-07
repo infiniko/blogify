@@ -3,7 +3,8 @@
         <textarea class="fs-1 border-0 border-bottom border-primary border-2 no-outline" rows="1"
             placeholder="Post Title" [formControl]="title"></textarea>
         <span class="text-danger small">{{errors?.title}}</span>
-        <textarea class=" flex-grow-1 border-0 no-outline" placeholder="Content here"
+        <app-toolbar [editor]="editor" (onChange)="onChangeContent($event)"></app-toolbar>
+        <textarea #editor class=" flex-grow-1 border-0 no-outline" placeholder="Content here"
             [formControl]="content"></textarea>
         <span class="text-danger small">{{errors?.content}}</span>
     </div>
@@ -13,7 +14,10 @@
             @else {Save}
         </app-button>
         @if (id) {
-        <app-publish-button [id]="id"></app-publish-button>
+        <app-publish-button [id]="id" [published]="published"></app-publish-button>
+        }
+        @if (id) {
+        <a class="btn btn-danger" [routerLink]="previewUrl">Preview</a>
         }
     </div>
 </div>

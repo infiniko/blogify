@@ -1,0 +1,15 @@
+<div class="d-flex gap-3 align-items-center">
+    <a [routerLink]="[author.handle]">
+        <img class="rounded-circle shadow-sm" src="assets/avatar.png" width="30" height="30">
+    </a>
+    <div class="d-flex flex-column">
+        <a class="fw-bold text-capitalize text-decoration-none link-dark" [routerLink]="[author.handle]">
+            {{author.name}}
+        </a>
+        @if (formattedPublishedAt) {
+        <small class="fw-light p-1">{{formattedPublishedAt}}</small>
+        }@else {
+        <small class="fw-light bg-danger p-1">Unpublished</small>
+        }
+    </div>
+</div>

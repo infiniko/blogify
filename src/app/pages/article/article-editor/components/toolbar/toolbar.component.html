@@ -1,0 +1,13 @@
+<div class="bg-dark-subtle border rounded p-2 d-flex gap-2">
+
+    @for(action of actions; track $index){
+    <button class="btn btn-sm btn-outline-secondary icon-link" (click)="onClick(action.syntax)">
+        <fa-icon [icon]="action.icon"></fa-icon>
+    </button>
+    }
+    <button class="btn btn-sm btn-outline-secondary icon-link">
+        <fa-icon [icon]="imageIcon"></fa-icon>
+        <input type="file" hidden>
+    </button>
+
+</div>

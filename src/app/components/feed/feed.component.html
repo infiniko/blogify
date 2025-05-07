@@ -1,0 +1,6 @@
+@for (article of data.content; track article.id) {
+<app-article-card [article]="article" />
+}
+@if (data.page < data.total -1) { <app-button variantStyle="secondary" (onClick)="fetchData(data.page+1)">Load
+    More</app-button>
+    }

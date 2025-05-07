@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ButtonComponent } from '../../../../components/button/button.component';
 import { ArticleService } from '../../../../shared/article.service';
 
@@ -11,7 +11,9 @@ export class PublishButtonComponent {
   private articleService = inject(ArticleService);
   @Input() id: number = 0;
 
-  published: boolean = false;
+  @Input() published: boolean = false;
+
+  @Output() togglePublish = new EventEmitter<string | null>()
 
   apiProgress: boolean = false;
   onClick() {
@@ -19,6 +21,7 @@ export class PublishButtonComponent {
     this.articleService.togglePublish(this.id).subscribe((data) => {
       this.apiProgress = false;
       this.published = data.published;
+      this.togglePublish.emit(data.published ? new Date().toISOString() : null);
     })
   }
 

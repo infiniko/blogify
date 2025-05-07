@@ -1,0 +1,8 @@
+<div class="card mb-2">
+    <div class="card-body">
+        <app-article-info [author]="article.author" [publishedAt]="article.publishedAt" />
+        <a class="text-decoration-none text-dark fs-2" [routerLink]="'/'+article.author.handle+'/'+article.slug">
+            {{article.title}}
+        </a>
+    </div>
+</div>

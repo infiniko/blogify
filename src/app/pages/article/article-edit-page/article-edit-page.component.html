@@ -1,0 +1,10 @@
+@switch (status) {
+@case ('success') {
+<app-article-editor [article]="article" />
+}
+@case ('fail') {
+<app-alert variantStyle="danger">{{message}}</app-alert>
+}
+@default {
+<app-spinner size="regular"></app-spinner>
+}}

@@ -1,8 +1,14 @@
 @use "bootstrap/scss/bootstrap" with (
     $primary: #04BFBF,
-    $secondary: #618C8C,
-    $success: #5bc783,
-    $danger: #F2163E,
+    // $secondary: #618C8C,
+    $secondary: #5DA9A9,
+    // $success: #5bc783,
+    $success: #3CCB7F,
+    $danger: #FF6B6B,
+    $warning: #FFB947,
+    $info: #5CD6D6,
+    $light: #E6F9F9,
+    $dark: #035E5E,
     $border-width: 1px
     );
 // @import "../node_modules/bootstrap/scss/bootstrap.scss"
