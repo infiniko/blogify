@@ -1,8 +1,16 @@
 <div class="card mb-2">
-    <div class="card-body">
-        <app-article-info [author]="article.author" [publishedAt]="article.publishedAt" />
-        <a class="text-decoration-none text-dark fs-2" [routerLink]="'/'+article.author.handle+'/'+article.slug">
-            {{article.title}}
-        </a>
+    <div class="row">
+        <div class="col-4">
+            <app-image-with-fallback classNames="rounded-start" [image]="article.image" [height]="'200'" />
+        </div>
+        <div class="col-8">
+            <div class="card-body text-truncate">
+                <app-article-info [author]="article.author" [publishedAt]="article.publishedAt" />
+                <a class="text-decoration-none text-dark fs-2"
+                    [routerLink]="'/'+article.author.handle+'/'+article.slug">
+                    {{article.title}}
+                </a>
+            </div>
+        </div>
     </div>
 </div>

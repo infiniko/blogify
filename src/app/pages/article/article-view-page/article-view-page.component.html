@@ -2,22 +2,28 @@
     <div class="col-lg-9">
         @switch (status) {
         @case ('success') {
-        <main class="bg-white border border-2 border-primary rounded py-3 px-4">
-            <div class="d-flex align-items-center">
-                <app-article-info class="flex-grow-1" [author]="article.author" [publishedAt]="article.publishedAt" />
-                @if (isOwnedByLoggedInUser) {
-                <div class="d-flex gap-2">
-                    <app-publish-button [id]="article.id" [published]="!!article.publishedAt"
-                        (togglePublish)="onTogglePublish($event)"></app-publish-button>
-                    <a class="btn btn-warning"
-                        [routerLink]="'/'+article.author.handle+'/'+article.slug+'/edit'">Edit</a>
+        <main class="bg-white border border-2 border-primary rounded">
+            <app-image-with-fallback classNames="rounded-top p-1" [image]="article.image" [height]="'500'" />
+            <!-- <img class="object-fit-cover w-100 rounded-top p-1" height="500" [src]="'/api/assets/'+article.image" /> -->
+            <div class="py-3 px-4">
+                <div class="d-flex align-items-center">
+                    <app-article-info class="flex-grow-1" [author]="article.author"
+                        [publishedAt]="article.publishedAt" />
+                    @if (isOwnedByLoggedInUser) {
+                    <div class="d-flex gap-2">
+                        <app-publish-button [id]="article.id" [published]="!!article.publishedAt"
+                            (togglePublish)="onTogglePublish($event)"></app-publish-button>
+                        <a class="btn btn-warning"
+                            [routerLink]="'/'+article.author.handle+'/'+article.slug+'/edit'">Edit</a>
+                    </div>
+                    }
                 </div>
-                }
+                <h1 class="text-capitalize">
+                    <div>{{article.title}}</div>
+                </h1>
+                <div [innerHTML]="articleContent"></div>
             </div>
-            <h1 class="text-capitalize">
-                <div>{{article.title}}</div>
-            </h1>
-            <div [innerHTML]="articleContent"></div>
+
         </main>
         }
         @case ('fail') {

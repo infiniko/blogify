@@ -10,23 +10,33 @@ import { ArticleInfoComponent } from '../../../components/article-info/article-i
 import { PublishButtonComponent } from '../components/publish-button/publish-button.component';
 import { AuthService } from '../../../shared/auth.service';
 import { Marked } from 'marked';
-import hljs from 'highlight.js';
 import { markedHighlight } from 'marked-highlight';
+import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-light.min.css'
+import { ImageWithFallbackComponent } from "../../../components/image-with-fallback/image-with-fallback.component";
 
-const marked = new Marked(
+const marked = new Marked();
+marked.use(
   markedHighlight({
-    langPrefix: 'hljs langauge-',
+    langPrefix: 'hljs language-',
     highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : 'plaintext';
       return hljs.highlight(code, { language }).value
-    }
+    },
   })
 )
+marked.use({
+  renderer: {
+    paragraph(token) {
+      const text = marked.parseInline(token.text);
+      return `<p class="markdown">${text}</p>`;
+    }
+  }
+})
 
 @Component({
   selector: 'app-article-view-page',
-  imports: [SpinnerComponent, AlertComponent, SideArticlesComponent, ArticleInfoComponent, PublishButtonComponent, RouterLink],
+  imports: [SpinnerComponent, AlertComponent, SideArticlesComponent, ArticleInfoComponent, PublishButtonComponent, RouterLink, ImageWithFallbackComponent],
   templateUrl: './article-view-page.component.html'
 })
 export class ArticleViewPageComponent implements OnInit {

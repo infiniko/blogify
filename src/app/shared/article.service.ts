@@ -9,7 +9,7 @@ export class ArticleService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createOrUpdateArticle(body: { title: string, content: string }, id: number) {
+  createOrUpdateArticle(body: { title: string, content: string, image: string | null }, id: number) {
     if (id) {
 
       return this.httpClient.put<{ id: number }>('/api/articles/' + id, body);

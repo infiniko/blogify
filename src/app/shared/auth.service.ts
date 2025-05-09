@@ -60,4 +60,12 @@ export class AuthService {
         }
       }))
   }
+
+  updateUser(name: string, image: string | null) {
+    this.user.next({
+      ...this.user.value,
+      name,
+      image
+    })
+  }
 }

@@ -8,10 +8,11 @@ import { Article } from '../../../shared/types';
 import { AuthService } from '../../../shared/auth.service';
 import { RouterLink } from '@angular/router';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ImageSelectorComponent } from '../../../components/image-selector/image-selector.component';
 
 @Component({
   selector: 'app-article-editor',
-  imports: [ButtonComponent, ReactiveFormsModule, PublishButtonComponent, RouterLink, ToolbarComponent],
+  imports: [ButtonComponent, ReactiveFormsModule, PublishButtonComponent, RouterLink, ToolbarComponent, ImageSelectorComponent],
   templateUrl: './article-editor.component.html'
 })
 export class ArticleEditorComponent {
@@ -24,11 +25,13 @@ export class ArticleEditorComponent {
 
   id: number = 0;
   apiProgress = false;
+  image: string | null = null;
   published = false;
 
   @Input() set article(article: Article) {
     this.title.setValue(article.title);
     this.content.setValue(article.content);
+    this.image = article.image;
     this.id = article.id;
     this.published = !!article.publishedAt
 
@@ -76,6 +79,7 @@ export class ArticleEditorComponent {
     this.articleService.createOrUpdateArticle({
       title: this.title.value,
       content: this.content.value,
+      image: this.image
     }, this.id).subscribe({
       next: (data) => {
         this.apiProgress = false;
@@ -97,5 +101,9 @@ export class ArticleEditorComponent {
   //function used to update values changed by toolbar interaction
   onChangeContent(value: string) {
     this.content.setValue(value);
+  }
+
+  onChageImage(value: string | null) {
+    this.image = value;
   }
 }

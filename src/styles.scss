@@ -1,8 +1,6 @@
 @use "bootstrap/scss/bootstrap" with (
     $primary: #04BFBF,
-    // $secondary: #618C8C,
     $secondary: #5DA9A9,
-    // $success: #5bc783,
     $success: #3CCB7F,
     $danger: #FF6B6B,
     $warning: #FFB947,
@@ -63,5 +61,18 @@
 
 .editor-base{
     height: calc(100vh - 75px);
+}
+
+p.markdown img {
+    width: 100vw;
+    max-width: 100%;
+}
+
+.toast-wrapper{
+    max-width: 200px;
+    right: 20px;
+    top: 75px;
+    z-index: 1;
+    transition: 0.3s ease;
 }
 

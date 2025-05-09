@@ -5,9 +5,11 @@
         <fa-icon [icon]="action.icon"></fa-icon>
     </button>
     }
-    <button class="btn btn-sm btn-outline-secondary icon-link">
+    <button class="btn btn-sm btn-outline-secondary icon-link" (click)="imageInput.click()">
         <fa-icon [icon]="imageIcon"></fa-icon>
-        <input type="file" hidden>
+        <input type="file" hidden #imageInput (change)="onSelectImage($event)">
     </button>
 
 </div>
+
+<app-toast [message]="error"></app-toast>

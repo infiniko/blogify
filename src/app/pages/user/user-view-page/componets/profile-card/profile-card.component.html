@@ -1,0 +1,16 @@
+<div class="card mb-5 text-center">
+    <div class="card-header">
+        <div class="d-inline-block" style="width: 200px;">
+            <app-image-with-fallback classNames="rounded-circle shadow-sm" height="200" fallbackType="profile"
+                [image]="user?.image?? null" />
+        </div>
+    </div>
+    <div class="card-body">
+        <span class="fs-4">{{user?.name}}</span>
+    </div>
+    @if (isLoggedIn) {
+    <div class="card-footer">
+        <a class="btn btn-primary" routerLink="/edit" routerLinkActive="router-link-active">Edit</a>
+    </div>
+    }
+</div>
