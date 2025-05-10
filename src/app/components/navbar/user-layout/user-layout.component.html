@@ -1,1 +1,15 @@
-<p>user-layout works!</p>
+<div class="dropdown" #profileDropDown>
+    <a class="nav-link" aria-current="user" role="button" (click)="toggle()">
+        <div class="d-flex gap-2 icon-link">
+            <app-image-with-fallback fallbackType="profile" [image]="image" height="40" style="width: 40px;"
+                classNames="rounded-circle shadow-sm border border-dark" />
+            {{name}}
+        </div>
+    </a>
+    <ul class="dropdown-menu end-0 border border-secondary" [class.show]="show">
+        <li><a class="dropdown-item" [routerLink]="link">Profile</a></li>
+        <li><a class="dropdown-item" routerLink="/edit">Edit</a></li>
+        <li><span class="dropdown-item" style="cursor: pointer;" (click)="logout()">Logout</span></li>
+
+    </ul>
+</div>

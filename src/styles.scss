@@ -76,3 +76,9 @@ p.markdown img {
     transition: 0.3s ease;
 }
 
+.navbar .dropdown-item{
+    &:hover{
+        transform: unset;
+        text-shadow: unset;
+    }
+}
