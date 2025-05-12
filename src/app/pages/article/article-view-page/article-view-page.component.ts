@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ArticleService } from '../../../shared/article.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Article } from '../../../shared/types';
+import { Article, AVAILABLE_REACTIONS } from '../../../shared/types';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SpinnerComponent } from '../../../components/spinner/spinner.component';
 import { AlertComponent } from '../../../components/alert/alert.component';
@@ -14,6 +14,7 @@ import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-light.min.css'
 import { ImageWithFallbackComponent } from "../../../components/image-with-fallback/image-with-fallback.component";
+import { ReactionButtonComponent } from '../../../components/reaction-button/reaction-button.component';
 
 const marked = new Marked();
 marked.use(
@@ -36,7 +37,16 @@ marked.use({
 
 @Component({
   selector: 'app-article-view-page',
-  imports: [SpinnerComponent, AlertComponent, SideArticlesComponent, ArticleInfoComponent, PublishButtonComponent, RouterLink, ImageWithFallbackComponent],
+  imports: [
+    SpinnerComponent,
+    AlertComponent,
+    SideArticlesComponent,
+    ArticleInfoComponent,
+    PublishButtonComponent,
+    RouterLink,
+    ImageWithFallbackComponent,
+    ReactionButtonComponent
+  ],
   templateUrl: './article-view-page.component.html'
 })
 export class ArticleViewPageComponent implements OnInit {
@@ -46,6 +56,7 @@ export class ArticleViewPageComponent implements OnInit {
 
   status: 'loading' | 'success' | 'fail' = 'loading';
   message: string = '';
+  reactions = AVAILABLE_REACTIONS;
 
   article!: Article;
 

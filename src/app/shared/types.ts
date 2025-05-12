@@ -12,7 +12,8 @@ export type Article = {
     content: string;
     image: string | null;
     publishedAt: string | null;
-    author: Author
+    author: Author;
+    reactions: Record<Reaction, ReactionDetails>
 }
 
 
@@ -22,3 +23,8 @@ export type Author = {
     handle: string;
     image: string | null;
 }
+
+export type Reaction = 'like' | 'hot' | 'readlater';
+export type ReactionDetails = { count: number, reacted: boolean }
+
+export const AVAILABLE_REACTIONS: Reaction[] = ['readlater', 'hot', 'like'];

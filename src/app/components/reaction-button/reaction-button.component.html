@@ -1,0 +1,6 @@
+<div class="icon-link" (click)="onClick()">
+    <fa-icon class="action" [icon]="reacted? actions[category].icon: actions[category].iconR" size="2x"
+        [style]="{color:actions[category].color}"></fa-icon>
+    {{count}}
+</div>
+<!-- [class]="reacted? 'btn btn-danger': 'btn btn-outline-danger'" -->

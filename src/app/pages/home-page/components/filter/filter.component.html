@@ -1,0 +1,13 @@
+<div class="py-3 d-flex">
+    <div class="flex-grow-1">
+        <button class="btn btn-outline-dark" (click)="onClick(null)">Latest</button>
+    </div>
+    <div class="d-flex gap-2">
+        <button class="btn btn-light" style="color: #6C5CE7;" (click)="onClick('readlater')"><fa-icon
+                [icon]="icons.faBookmark" size="lg"></fa-icon></button>
+        <button class="btn btn-light" style="color: #FF9F43;" (click)="onClick('hot')"><fa-icon [icon]="icons.faSun"
+                size="lg"></fa-icon></button>
+        <button class="btn btn-light" style="color: #F368E0;" (click)="onClick('like')"><fa-icon [icon]="icons.faHeart"
+                size="lg"></fa-icon></button>
+    </div>
+</div>

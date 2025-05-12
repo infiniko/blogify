@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ArticleService } from '../../shared/article.service';
-import { Article, Page } from '../../shared/types';
+import { Article, Page, Reaction } from '../../shared/types';
 import { ArticleCardComponent } from './components/article-card/article-card.component';
 import { ButtonComponent } from '../button/button.component';
 
@@ -13,6 +13,7 @@ export class FeedComponent implements OnInit, OnChanges {
   private articleService = inject(ArticleService);
 
   @Input() handle: string | null = null;
+  @Input() filter: null | Reaction = null;
 
   data: Page<Article> = {
     content: [],
@@ -26,7 +27,10 @@ export class FeedComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['handle'].currentValue !== changes['handle'].previousValue && !changes['handle'].firstChange) {
+    if (
+      changes['handle']?.currentValue !== changes['handle']?.previousValue && !changes['handle']?.firstChange ||
+      changes['filter']?.currentValue !== changes['filter']?.previousValue && !changes['filter']?.firstChange
+    ) {
       this.data = {
         content: [],
         page: 0,
@@ -40,7 +44,7 @@ export class FeedComponent implements OnInit, OnChanges {
   fetchData(page: number = 0) {
     const apiFn = this.handle ?
       this.articleService.fetchArticlesOfUser(this.handle, page, this.data.size) :
-      this.articleService.fetchArticles(page, this.data.size);
+      this.articleService.fetchArticles(page, this.data.size, this.filter);
     apiFn.subscribe(data => {
       this.data = {
         content: [...this.data.content, ...data.content],

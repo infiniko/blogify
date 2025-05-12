@@ -10,6 +10,12 @@
                     [routerLink]="'/'+article.author.handle+'/'+article.slug">
                     {{article.title}}
                 </a>
+                <div class="d-flex gap-2">
+                    @for (reaction of reactions; track $index) {
+                    <app-reaction-button [category]="reaction" [entityId]="article.id"
+                        [details]="article.reactions[reaction]" />
+                    }
+                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Article, Page } from './types';
+import { Article, Page, Reaction } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +21,13 @@ export class ArticleService {
     return this.httpClient.patch<{ published: boolean }>(`/api/articles/${id}/publish`, {});
   }
 
-  fetchArticles(page: number = 0, size: number = 10,) {
+  fetchArticles(page: number = 0, size: number = 10, filter: null | Reaction) {
     return this.httpClient.get<Page<Article>>(`/api/articles/`, {
       params: {
         page,
         size,
-        sort: 'published_at'
+        sort: 'published_at',
+        ...(filter ? { reaction: filter } : {})
       }
     });
   }

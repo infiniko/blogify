@@ -1,12 +1,13 @@
 @use "bootstrap/scss/bootstrap" with (
-    $primary: #04BFBF,
-    $secondary: #5DA9A9,
+    $primary: #4FD1D1,
+    // $secondary: #5DA9A9,
+    $secondary: #66C7C7,
     $success: #3CCB7F,
     $danger: #FF6B6B,
     $warning: #FFB947,
     $info: #5CD6D6,
-    $light: #E6F9F9,
-    $dark: #035E5E,
+    $light: #C9F1F1,
+    $dark: #1C9E9E,
     $border-width: 1px
     );
 // @import "../node_modules/bootstrap/scss/bootstrap.scss"
@@ -82,3 +83,15 @@ p.markdown img {
         text-shadow: unset;
     }
 }
+
+.action svg{
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+        // box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px, rgba(0, 0, 0, 0.36) 0px 1px 2px;
+        // text-shadow: 0 0 8px rgba(255, 105, 97, 0.6);
+        filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12));
+        transform: translate(-3px, 0px);
+    }
+}
+
